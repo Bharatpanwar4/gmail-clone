@@ -32,7 +32,7 @@ const Sidebar = () => {
     <div className="w-[15%]">
       {/* compose email */}
       <div className="p-3">
-        <button className="flex items-center gap- p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]">
+        <button className="flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]">
           <Pencil size={"24px"} />
           Compose
         </button>

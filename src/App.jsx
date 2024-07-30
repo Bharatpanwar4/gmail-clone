@@ -1,9 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Header from "./components/common/Header";
-import Sidebar from "./components/common/Sidebar";
 import Body from "./components/common/Body";
-import Inbox from "./screen/inbox";
+import Header from "./components/common/Header";
+import Inboxx from "./screen/inbox";
 import Mail from "./screen/mail";
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Inbox />,
+          element: <Inboxx />,
         },
         {
           path: "/mail/:id",
