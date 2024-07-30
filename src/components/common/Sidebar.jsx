@@ -1,4 +1,4 @@
-import { Clock5, Inbox, PanelRightClose, Pencil, SendHorizonal, Star, StickyNote } from "lucide-react";
+import { ChevronDown, Clock5, Inbox, PanelRightClose, Pencil, SendHorizonal, Star, StickyNote } from "lucide-react";
 import React from "react";
 
 const Sidebar = () => {
@@ -23,12 +23,16 @@ const Sidebar = () => {
         icon: <StickyNote size={'20px'}/>,
         label: "drafts",
       },
+      ,{
+        icon: <ChevronDown size={'20px'}/>,
+        label: "more",
+      },
   ];
   return (
     <div className="w-[15%]">
       {/* compose email */}
       <div className="p-3">
-        <button className="flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]">
+        <button className="flex items-center gap- p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]">
           <Pencil size={"24px"} />
           Compose
         </button>
@@ -39,7 +43,7 @@ const Sidebar = () => {
       <div className="text-gray-500">
         {
             sideItems?.map((item)=>{
-                return (<div className="flex items-center gap-4  py-1 rounded-r-full hover:bg-[#EAEBEF]" key={item.label}>
+                return (<div className=" hover:bg-[#EAEBEF] flex pl-6 py-1 rounded-r-full items-center gap-4 my-2  hover:cursor-pointer" key={item.label}>
                     <div>
                         {item.icon}
                     </div>
