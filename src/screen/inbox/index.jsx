@@ -13,14 +13,12 @@ import React, { useState } from "react";
 import Messages from "../message";
 
 const Inboxx = () => {
-const [mailType,setMailType]=useState('primary')
+  const [mailType, setMailType] = useState("primary");
   const MailTabs = [
     { icon: <Inbox size={"20px"} />, label: "primary" },
     { icon: <Tag size={"20px"} />, label: "promotions" },
     { icon: <Users size={"20px"} />, label: "social" },
   ];
-
-  
 
   return (
     <div className="flex-1 bg-white rounded-xl mx-5">
@@ -39,20 +37,16 @@ const [mailType,setMailType]=useState('primary')
           </div>
         </div>
 
-
-
         <div className="flex items-center gap-2">
-<p className="text-sm text-gray-500">1-50 of 10000</p>
+          <p className="text-sm text-gray-500">1-50 of 10000</p>
 
-<button>
-<ChevronLeft size={"20px"} className="cursor-pointer"  />
+          <button className="hover:rounded-full hover:bg-gray-100">
+            <ChevronLeft size={"20px"} className="cursor-pointer" />
+          </button>
 
-</button>
-
-<button>
-<ChevronRight size={"20px"} className="cursor-pointer"  />
-
-</button>
+          <button className="hover:rounded-full hover:bg-gray-100">
+            <ChevronRight size={"20px"} className="cursor-pointer" />
+          </button>
         </div>
       </div>
 
@@ -61,7 +55,14 @@ const [mailType,setMailType]=useState('primary')
         <div className="flex items-center gap-1">
           {MailTabs?.map((item) => {
             return (
-              <button key={item.label} className={`flex text-sm font-medium items-center gap-5 p-4 w-52 hover:bg-gray-100 ${mailType === item.label && 'border-b-4  border-b-[#0B57D0] text-[#0B57D0] '}`} onClick={()=>setMailType(item.label)}>
+              <button
+                key={item.label}
+                className={`flex text-sm font-medium items-center gap-5 p-4 w-52 hover:bg-gray-100 ${
+                  mailType === item.label &&
+                  "border-b-4  border-b-[#0B57D0] text-[#0B57D0] "
+                }`}
+                onClick={() => setMailType(item.label)}
+              >
                 {item.icon}
                 <span className="capitalize">{item.label}</span>
               </button>
@@ -69,14 +70,10 @@ const [mailType,setMailType]=useState('primary')
           })}
         </div>
 
-     {/* message */}
-     <Messages/>
-      <Messages/>
-     
+        {/* message */}
+        <Messages />
+        <Messages />
       </div>
-
- 
-
     </div>
   );
 };

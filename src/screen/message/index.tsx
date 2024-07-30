@@ -1,9 +1,14 @@
 import { Square, Star } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Messages = () => {
+    const navigate=useNavigate()
+    const openMail=()=>{
+         navigate('/mail/1')
+    }
   return (
-    <div className="flex gap-4 items-center justify-between border-b border-gray-200 px-4 text-sm hover:cursor-pointer hover:shadow-md py-3">
+    <div className="flex gap-4 items-center justify-between border-b border-gray-200 px-4 text-sm hover:cursor-pointer hover:shadow-md py-3" onClick={openMail}>
       <div className="flex items-center gap-3">
         <div className="flex-none text-gray-300">
           <Square className="text-[#707070]" size={"20px"} />
