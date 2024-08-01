@@ -9,17 +9,50 @@ import {
   Tag,
   Users,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Messages from "../message";
+import { useDispatch, useSelector } from "react-redux";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { database } from "../../firebase";
+import { toUpdateAllEmailData } from "../../redux/mailSlice";
 
 const Inboxx = () => {
   const [mailType, setMailType] = useState("primary");
+  const { allEmails, searchedText } = useSelector((state) => state.mailSlice);
+  const [duplicateEmail, setDuplicateEmail] = useState(allEmails);
+
+  const dispatch = useDispatch();
   const MailTabs = [
     { icon: <Inbox size={"20px"} />, label: "primary" },
     { icon: <Tag size={"20px"} />, label: "promotions" },
     { icon: <Users size={"20px"} />, label: "social" },
   ];
 
+  console.log("search", searchedText);
+
+  useEffect(() => {
+    const queryy = query(
+      collection(database, "emails"),
+      orderBy("createdAt", "desc")
+    );
+    const unsubscribe = onSnapshot(queryy, (snapshot) => {
+      const allEmailsData = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      dispatch(toUpdateAllEmailData(allEmailsData));
+    });
+    // clean up
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const filteredEmail = allEmails?.filter((allEmail) => {
+      return allEmail?.subject?.toLowerCase()?.includes(searchedText.toLowerCase()) || allEmail?.to?.toLowerCase()?.includes(searchedText.toLowerCase()) || allEmail?.message?.toLowerCase()?.includes(searchedText.toLowerCase())
+    });
+    setDuplicateEmail(filteredEmail)
+  }, [searchedText, allEmails]);
   return (
     <div className="flex-1 bg-white rounded-xl mx-5">
       <div className="flex items-center justify-between px-4">
@@ -71,8 +104,8 @@ const Inboxx = () => {
         </div>
 
         {/* message */}
-        <Messages />
-        <Messages />
+
+        {duplicateEmail && duplicateEmail?.map((email) => <Messages email={email} />)}
       </div>
     </div>
   );

@@ -34,7 +34,6 @@ setFormData({
   subject: "",
   message: "",
 })
-    // console.log("fd", formData);
   };
   return (
     <div

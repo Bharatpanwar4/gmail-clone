@@ -1,7 +1,15 @@
 import { CircleHelp, Grip, Menu, Search, Settings } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
+import { useDispatch } from "react-redux";
+import { toUpdateSearchedText } from "../../redux/mailSlice";
 const Header = () => {
+  const [searchInput,setSearchInput]=useState('')
+const dispatch =useDispatch()
+
+  useEffect(()=>{
+dispatch(toUpdateSearchedText(searchInput))
+  },[searchInput])
   return (
     <div className="flex items-center justify-between mx-3 h-16">
       {" "}
@@ -25,6 +33,9 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search Mail"
+            value={searchInput}
+            onChange={(e)=>setSearchInput(e.target.value)
+            }
             className="rounded-full bg-transparent w-full outline-none px-1"
           />
         </div>
@@ -42,7 +53,7 @@ const Header = () => {
             <Grip size={"20px"} className="text-gray-500" />
           </div>
 
-          <Avatar size={'small'}/>
+          <Avatar size={"small"} />
         </div>
       </div>
     </div>
