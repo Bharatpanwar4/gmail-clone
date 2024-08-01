@@ -11,8 +11,10 @@ import {
   Trash2,
 } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ActionIcons = () => {
+  const navigate = useNavigate();
   const IconList = [
     {
       icon: <ArchiveRestore size={"20px"} />,
@@ -42,14 +44,17 @@ const ActionIcons = () => {
   return (
     <div className="flex items-center justify-between">
       <div className="flex  items-center text-[#373737] gap-2 my-2">
-        <div className="p-2 hover:bg-gray-200 hover:rounded-full hover:cursor-pointer mx-4">
+        <div
+          className="p-2 hover:bg-gray-200 hover:rounded-full hover:cursor-pointer mx-4 text-[#707070] hover:text-gray-700"
+          onClick={() => navigate("/")}
+        >
           <MoveLeft size={"20px"} />
         </div>
         {IconList?.map((item) => {
           return (
             <div
               key={item.fn}
-              className="p-2 hover:bg-gray-200 hover:rounded-full hover:cursor-pointer"
+              className="p-2 hover:bg-gray-200 text-[#707070] hover:text-gray-700 hover:rounded-full hover:cursor-pointer"
             >
               {item.icon}
             </div>

@@ -4,6 +4,7 @@ import Body from "./components/common/Body";
 import Header from "./components/common/Header";
 import Inboxx from "./screen/inbox";
 import Mail from "./screen/mail";
+import SendMail from "./screen/sendMail";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
       <div className="bg-[#F6F8FC] w-screen h-screen overflow-hidden">
         <Header />
         <RouterProvider router={router}/>
+
+        <div className="absolute w-[30%] bottom-0 z-10 right-20">
+          <SendMail/>
+        </div>
       </div>
     </>
   );
